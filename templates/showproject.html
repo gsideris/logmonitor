@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div class="jumbotron well">
+        <h2>
+          {{project.title}}
+        </h2>
+        <blockquote>
+        <p>
+          Project code : {{project.uuid}}
+        </p> <small><cite>{{project.created}}</cite></small>
+         {%if project.completed == False %}
+            <form class="form-horizontal" method="POST" action="/project/complete">
+              <input type="hidden" name="project" value="{{project.uuid}}">
+              <button id="complete" name="complete" class="btn btn-primary">Complete</button>
+            </form>
+          {% endif %}
+      </blockquote>
+         
+        
+        
+      </div>
+
+
+{% for entry in entries %}
+
+      {% if entry.entry_type == 'success' %}
+      <div class="alert alert-success">
+      {% elif entry.entry_type == 'info' %}  
+      <div class="alert alert-info">
+      {% elif entry.entry_type == 'fail' %}  
+      <div class="alert alert-danger">
+      {% elif entry.entry_type == 'warning' %}  
+      <div class="alert alert-warning">    
+      {%endif%}
+
+        <h4>
+          {{entry.message }}
+        </h4>  {{ entry.created }} 
+      </div>
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+

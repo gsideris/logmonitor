@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+<form class="form-horizontal" method="POST" action="/project/create">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Add Project</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="title">Title</label>  
+  <div class="col-md-4">
+  <input id="title" name="title" type="text" class="form-control input-md">  
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="password">Password</label>
+  <div class="col-md-4">
+    <input id="password" name="password" type="password"  class="form-control input-md">    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Add"></label>
+  <div class="col-md-4">
+    <button id="Add" name="Add" class="btn btn-primary">Add</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+
+
+ <ul class="ds-btn">
+{% for project in projects %}
+
+        <li>
+          {% if project.completed %}
+         <a class="btn btn-lg btn-danger " href="/project/show?project={{project.uuid}}">
+          <i class="glyphicon glyphicon-check pull-left"></i>
+          {% else %}
+          <a class="btn btn-lg btn-success " href="/project/show?project={{project.uuid}}">
+            <i class="glyphicon glyphicon-cog pull-left"></i>
+          {% endif %}
+         <span>{{project.title}}<br><small>{{project.created}}</small></span></a>           
+        </li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+

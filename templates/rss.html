@@ -1,0 +1,16 @@
+<rss version="2.0">
+<channel>
+  <title>{{project.title}}</title>
+  <link>/project/show?project={{project.uuid}}</link>
+  <description>Log Monitor</description>
+
+  {% for entry in entries %}
+  <item>
+    <title>{{entry.entry_type}}</title>    
+    <description>{{entry.message }}</description>
+  </item>
+  {% endfor %}
+
+</channel>
+
+</rss>
